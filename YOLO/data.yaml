@@ -1,0 +1,5 @@
+path: Datasets/
+train: train/
+val: train/
+nc: 4
+names: ['Vehicle','Pedestrian','TrafficLight','TrafficSign']
