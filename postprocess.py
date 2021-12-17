@@ -30,7 +30,7 @@ def indent(elem, level=0): #자료 출처 https://goo.gl/J8VoDK
             elem.tail = i
 
 
-# In[88]:
+# In[1]:
 
 
 def Label_Reformatter(arg,width,height):
@@ -38,7 +38,7 @@ def Label_Reformatter(arg,width,height):
     arg[0] = int(arg[0])
     arg[1:] = [float(i) for i in arg[1:]]
     half_x , half_y = arg[3]/2 , arg[4]/2
-    result = [classes[arg[0]],int((arg[1]-half_x)*width),int((arg[2]-half_y)*height),int((arg[1]+half_x)*width),int((arg[2]+half_y)*height)]
+    result = [classes[arg[0]],int((arg[1]-half_x)*width),int((arg[2]-half_y)*height),int((arg[1]+half_x)*width),int((arg[2]+half_y)*height),arg[5]]
     return result
 
 
@@ -77,12 +77,18 @@ def main():
                 bnd = SubElement(obj,'bndbox')
                 for index,axis in enumerate(axis_name):
                     SubElement(bnd,axis).text = str(org_data[index+1])
+                SubElement(obj,'confidence').text = str(org_data[5])
                 indent(root)
                 #dump(root)
                 tree = ElementTree(root)
                 tree.write('%s.xml' % txt[:-4] ,encoding='utf-8', xml_declaration=True)
             os.remove(txt)
         print('%d label data processed' % len(txts))
+        
+        img_folder =glob('Datasets/test/*/?')
+        
+        for fold in img_folder:
+            shutil.rmtree(fold)
     
     print('All label datas at %s have been Reformatted Successfully' % args.path)
 

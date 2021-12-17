@@ -39,7 +39,7 @@ def main():
                     continue
                 os.makedirs('%s/%s_Result' % (head,sub.split('\\')[-1]),exist_ok=True)
                 
-                os.system("python YOLO/detect.py --weights %s/model.pt --img %s --conf %s --source %s --name %s --save-txt --exist-ok --nosave" % (args.model,args.img,args.conf,sub,args.name))
+                os.system("python YOLO/detect.py --weights %s/model.pt --img %s --conf %s --source %s --name %s --save-txt --save-conf --exist-ok --nosave" % (args.model,args.img,args.conf,sub,args.name))
                 labels = glob('YOLO/runs/detect/%s/labels/*.txt' % (args.name))
                 for label in labels:
                     shutil.move(label,'%s/%s_Result' % (head,sub.split('\\')[-1]))
