@@ -1,7 +1,8 @@
 YOLOv5를 활용한  자율주행영상 객체 검출 
+==============================
 
 Autonomous object detection with using YOLOv5
-==============================
+
 
 
 들어가기에 앞서
